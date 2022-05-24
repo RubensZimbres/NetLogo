@@ -17,18 +17,23 @@ val home = System.getenv("HOME")
 // the command "java -classpath " + classpath + ... +
 //  "org.nlogo.headless.HeadlessBenchmarker " + ... from NetLogo/bin
 // Therefore the classpath must be relative to NetLogo/bin aab April 2020
+
+// Until sbt 1.3.0, sbt used Apache Ivy to implement dependency management.
+// sbt 1.3.0+ uses Coursier. AAB 5-2022
+val cacheDir = "/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2"
+
 val classpath =
   Seq("../netlogo-gui/target/classes",
       "../shared/target/classes",
       "../netlogo-gui/resources",
-      home + "/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.15.jar",
-      home + "/.ivy2/cache/org.ow2.asm/asm-all/jars/asm-all-5.2.jar",
-      home + "/.ivy2/cache/org.picocontainer/picocontainer/jars/picocontainer-2.15.jar",
-      home + "/.ivy2/cache/log4j/log4j/jars/log4j-1.2.17.jar",
-      home + "/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.15.jar",
-      home + "/.ivy2/cache/org.parboiled/parboiled_2.12/jars/parboiled_2.12-2.3.0.jar",
-      home + "/.ivy2/cache/com.typesafe/config/bundles/config-1.4.1.jar",
-      home + "/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.1.2.jar")
+      home + cacheDir + "/" + "org/scala-lang/scala-library/2.12.15/scala-library-2.12.15.jar",
+      home + cacheDir + "/" + "org/ow2/asm/asm-all/5.2/asm-all-5.2.jar",
+      home + cacheDir + "/" + "org/picocontainer/picocontainer/2.15/picocontainer-2.15.jar",
+      home + cacheDir + "/" + "log4j/log4j/1.2.17/log4j-1.2.17.jar",
+      home + cacheDir + "/" + "commons-codec/commons-codec/1.15/commons-codec-1.15.jar",
+      home + cacheDir + "/" + "org/parboiled/parboiled_2.12/2.3.0/parboiled_2.12-2.3.0.jar",
+      home + cacheDir + "/" + "com/typesafe/config/1.4.1/config-1.4.1.jar",
+      home + cacheDir + "/" + "org/scala-lang/modules/scala-parser-combinators_2.12/1.1.2/scala-parser-combinators_2.12-1.1.2.jar")
     .mkString(":")
 
 
